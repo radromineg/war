@@ -1,0 +1,30 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    queue<string> parkingLot;
+    string car;
+
+    while (true) {
+        cout << "输入车牌号以停车（输入\"exit\"结束）: ";
+        cin >> car;
+        if (car == "exit") break;
+
+        if (parkingLot.size() < 5) {
+            parkingLot.push(car);
+            cout << "车辆 " << car << " 已停车" << endl;
+        } else {
+            cout << "停车场已满！" << endl;
+        }
+    }
+
+    cout << "停车场中的车辆: ";
+    while (!parkingLot.empty()) {
+        cout << parkingLot.front() << " ";
+        parkingLot.pop();
+    }
+    cout << endl;
+
+    return 0;
+}
