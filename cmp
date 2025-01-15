@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int cmp(const void* a, const void* b) {
+    return (*(int*)a - *(int*)b);
+}
+
+int main() {
+    int fear[] = {2, 3, 1, 2, 2};
+    int n = sizeof(fear) / sizeof(fear[0]);
+
+    qsort(fear, n, sizeof(int), cmp);
+
+    int groups = 0, members = 0;
+    for (int i = 0; i < n; i++) {
+        members++;
+        if (members >= fear[i]) {
+            groups++;
+            members = 0;
+        }
+    }
+
+    printf("Number of groups: %d\n", groups);
+    return 0;
+}
