@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class FadeOut : MonoBehaviour
+{
+    public float fadeSpeed = 0.5f;
+
+    void Update()
+    {
+        Color color = GetComponent<Renderer>().material.color;
+        color.a -= fadeSpeed * Time.deltaTime;
+        GetComponent<Renderer>().material.color = color;
+
+        if (color.a <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+}
