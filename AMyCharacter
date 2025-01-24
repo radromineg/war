@@ -1,0 +1,8 @@
+void AMyCharacter::PlayMontage()
+{
+    if (AttackMontage && !IsPlayingMontage)
+    {
+        PlayAnimMontage(AttackMontage);
+        IsPlayingMontage = true;
+    }
+}
