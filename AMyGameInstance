@@ -1,0 +1,7 @@
+void AMyGameInstance::SaveGameData()
+{
+    UMySaveGame* SaveGameInstance = Cast<UMySaveGame>(UGameplayStatics::CreateSaveGameObject(UMySaveGame::StaticClass()));
+    SaveGameInstance->PlayerScore = PlayerScore;
+    SaveGameInstance->PlayerPosition = PlayerPosition;
+    UGameplayStatics::SaveGameToSlot(SaveGameInstance, TEXT("SaveSlot1"), 0);
+}
