@@ -1,0 +1,9 @@
+import pandas as pd
+
+def filter_excel(file_path, column, condition, output_path):
+    df = pd.read_excel(file_path)
+    filtered = df[df[column] == condition]
+    filtered.to_excel(output_path, index=False)
+
+# 使用示例
+filter_excel("data.xlsx", "Status", "Completed", "filtered_output.xlsx")
