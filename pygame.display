@@ -1,0 +1,21 @@
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("显示角色")
+
+# 加载图片
+player_image = pygame.image.load("player.png")  # 确保文件存在
+player_x, player_y = 100, 100
+
+running = True
+while running:
+    screen.fill((0, 0, 0))  # 黑色背景
+    screen.blit(player_image, (player_x, player_y))
+    pygame.display.update()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+pygame.quit()
