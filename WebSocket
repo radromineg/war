@@ -1,0 +1,19 @@
+const socket = new WebSocket('ws://example.com/socket');
+
+socket.onopen = function(event) {
+    console.log("Connected to WebSocket server.");
+    socket.send(JSON.stringify({ message: "Hello, Server!" }));
+};
+
+socket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    console.log("Received:", data);
+};
+
+socket.onerror = function(error) {
+    console.error("WebSocket Error:", error);
+};
+
+socket.onclose = function(event) {
+    console.log("Disconnected from WebSocket server.");
+};
