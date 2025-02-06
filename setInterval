@@ -1,0 +1,9 @@
+let seconds = 10;
+const countdown = setInterval(() => {
+    console.log(`剩余时间: ${seconds} 秒`);
+    seconds--;
+    if (seconds < 0) {
+        clearInterval(countdown);
+        console.log("时间到！");
+    }
+}, 1000);
