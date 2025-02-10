@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract DataRecorder {
+    // 事件用于记录数据上链的信息
+    event DataRecorded(address indexed sender, string data, uint256 timestamp);
+
+    string[] public dataList;
+
+    // 将数据记录到链上
+    function recordData(string memory _data) public {
+        dataList.push(_data);
+        emit DataRecorded(msg.sender, _data, block.timestamp);
+    }
+
+    // 根据索引获取记录的数据
+    function getData(uint256 index) public view returns (string memory) {
+        require(index < dataList.length, "索引超出范围");
+        return dataList[index];
+    }
+
+    // 获取数据记录总数
+    function getDataCount() public view returns (uint256) {
+        return dataList.length;
+    }
+}
