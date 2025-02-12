@@ -1,0 +1,25 @@
+import asyncio
+import aiohttp
+
+async def download_file(session, url):
+    try:
+        async with session.get(url) as response:
+            content = await response.read()
+            print(f"下载 {url} 成功, 内容长度: {len(content)}")
+    except Exception as e:
+        print(f"下载 {url} 失败: {e}")
+
+async def main(urls):
+    async with aiohttp.ClientSession() as session:
+        tasks = [download_file(session, url) for url in urls]
+        await asyncio.gather(*tasks)
+
+if __name__ == '__main__':
+    urls = [
+        'https://www.baidu.com',
+        'https://www.google.com',
+        'https://www.github.com',
+        'https://www.python.org',
+        'https://www.stackoverflow.com'
+    ]
+    asyncio.run(main(urls))
