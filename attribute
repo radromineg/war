@@ -1,0 +1,20 @@
+const canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+const gl = canvas.getContext("webgl");
+
+const vsSource = `attribute vec4 a_position; void main() { gl_Position = a_position; }`;
+const fsSource = `void main() { gl_FragColor = vec4(1, 0, 0, 1); }`;
+
+const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+gl.shaderSource(vertexShader, vsSource);
+gl.compileShader(vertexShader);
+
+const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+gl.shaderSource(fragmentShader, fsSource);
+gl.compileShader(fragmentShader);
+
+const program = gl.createProgram();
+gl.attachShader(program, vertexShader);
+gl.attachShader(program, fragmentShader);
+gl.linkProgram(program);
+gl.useProgram(program);
