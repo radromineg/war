@@ -1,0 +1,11 @@
+import kotlinx.coroutines.*
+import java.net.URL
+
+fun main() = runBlocking {
+    val response = async { fetch("https://api.github.com") }
+    println(response.await())
+}
+
+suspend fun fetch(url: String): String = withContext(Dispatchers.IO) {
+    URL(url).readText()
+}
