@@ -1,0 +1,8 @@
+SELECT user_id, activity_date, daily_count
+FROM (
+    SELECT user_id, activity_date,
+           COUNT(*) OVER (PARTITION BY user_id, activity_date) AS daily_count,
+           RANK() OVER (PARTITION BY activity_date ORDER BY COUNT(*) OVER (PARTITION BY user_id, activity_date) DESC) as rnk
+    FROM user_activity
+) sub
+WHERE rnk <= 10;
